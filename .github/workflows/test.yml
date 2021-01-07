@@ -31,4 +31,3 @@ jobs:
           pr_title: 'daily tags: auto-update dist definitions'
           pr_body: |
             The `daily-tags.sh` script has created a tag release with these changes.
-        continue-on-error: true # We do not create PRs if the branch is not there.
