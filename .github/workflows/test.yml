@@ -22,6 +22,7 @@ jobs:
       - uses: actions/checkout@v2
         with:
           ref: ${{ steps.names.outputs.rc }}
+          fetch-depth: 0
 
       - name: Send pull request to regular branch
         uses: repo-sync/pull-request@v2.5
