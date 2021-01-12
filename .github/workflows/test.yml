@@ -21,7 +21,11 @@ jobs:
         env: 
           rc_branch: ${{ github.event.push.ref }}
         run: |
+          set -x
+          echo "rc_branch is $rc_branch" >&2
+          echo "base is ${rc_branch#refs/heads/rc/}" >&2
           echo "::set-output name=base::${rc_branch#refs/heads/rc/}"
+
       - name: Send pull request to regular branch
         uses: alisw/pull-request@master
         with:
