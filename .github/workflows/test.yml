@@ -27,6 +27,7 @@ jobs:
         with:
           destination_branch: ${{ steps.name.outputs.base }}
           github_token: ${{ secrets.ALIBUILD_GITHUB_TOKEN }}
+          pr_allow_empty: true
           pr_title: 'daily tags: auto-update dist definitions'
           pr_body: |
             The daily-tags.sh script has created a tag release with these changes.
