@@ -11,22 +11,22 @@ jobs:
     if: ${{ !github.event.deleted }}
 
     steps:
-      - uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-
-      - name: Compute base branch
-        id: base
+      - name: Compute branch names
+        id: names
         env: 
           rc_branch: ${{ github.event.ref }}
         run: |
+          echo "::set-output name=rc::${rc_branch#refs/heads/}"
           echo "::set-output name=base::${rc_branch#refs/heads/rc/}"
 
-      - name: Send pull request to regular branch
-        uses: alisw/pull-request@master
+      - uses: actions/checkout@v2
         with:
-          source_branch: ${{ github.event.ref }}
-          destination_branch: ${{ steps.base.outputs.base }}
+          ref: ${{ steps.names.outputs.rc }}
+
+      - name: Send pull request to regular branch
+        uses: repo-sync/pull-request@v2.5
+        with:
+          destination_branch: ${{ steps.names.outputs.base }}
           github_token: ${{ secrets.ALIBUILD_GITHUB_TOKEN }}
           pr_title: 'daily tags: auto-update dist definitions'
           pr_body: |
