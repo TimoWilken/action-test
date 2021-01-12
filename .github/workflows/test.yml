@@ -30,4 +30,4 @@ jobs:
           github_token: ${{ secrets.ALIBUILD_GITHUB_TOKEN }}
           pr_title: 'daily tags: auto-update dist definitions'
           pr_body: |
-            The `daily-tags.sh` script has created a tag release with these changes.
+            The daily-tags.sh script has created a tag release with these changes.
