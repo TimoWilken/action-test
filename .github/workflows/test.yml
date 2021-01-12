@@ -11,10 +11,7 @@ jobs:
     if: ${{ !github.event.deleted }}
 
     steps:
-      - name: Get rc branch
-        uses: actions/checkout@v2
-        with:
-          ref: ${{ github.event.ref }}
+      - uses: actions/checkout@v2
 
       - name: Compute base branch
         id: base
